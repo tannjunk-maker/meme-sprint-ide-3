@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MEME SPRINT</title>
+<style>
+body{margin:0;background:#111;color:#fff;font-family:sans-serif;text-align:center}
+h1{font-size:28px;margin:15px 0 0}
+#score{font-size:22px;color:#ffe600;margin:10px}
+#box{width:300px;height:300px;margin:15px auto;background:#222;border-radius:20px;display:flex;align-items:center;justify-content:center;font-size:100px;cursor:pointer;user-select:none}
+button{padding:15px 30px;font-size:20px;border:0;border-radius:15px;background:#ffe600;font-weight:bold}
+#time{font-size:18px;margin:10px}
+</style>
+</head>
+<body>
+<h1>🔥 MEME SPRINT 🔥</h1>
+<div id="score">Score: 0</div>
+<div id="time">Waktu: 30</div>
+<div id="box">😂</div>
+<button onclick="start()">MULAI GAME</button>
+<p>Klik meme-nya secepat mungkin!</p>
+<script>
+let score=0,time=30,playing=false;
+let memes=["😂","🤣","💀","😭","🔥","🤡","👽","🐸","🗿","😱"];
+let box=document.getElementById("box");
+box.onclick=()=>{
+ if(!playing) return;
+ score++;
+ document.getElementById("score").innerText="Score: "+score;
+ box.innerText=memes[Math.floor(Math.random()*memes.length)];
+};
+function start(){
+ score=0;time=30;playing=true;
+ document.getElementById("score").innerText="Score: 0";
+ let t=setInterval(()=>{
+  time--;
+  document.getElementById("time").innerText="Waktu: "+time;
+  if(time<=0){clearInterval(t);playing=false;alert("Selesai! Score kamu: "+score);}
+ },1000);
+}
+</script>
+</body>
+</html>
